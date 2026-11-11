@@ -5,23 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="早起き">
-<meta name="theme-color" content="#fbf7ef">
+<meta name="theme-color" content="#f4efe3">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Yuji+Syuku&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>早起き</title>
 <style>
-  /* 明るく、ふつうの見た目 */
+  /* 白い和紙に墨と朱。古文書・お札の気配 */
   :root {
-    --bg: #fbf7ef; --card: #ffffff; --ink: #1f1f1d; --quiet: #6b6a66; --line: #ebe5d8; --chip: #f1ece2;
-    --accent: #e08a00; --accent-soft: #fff0d4; --gold: #b7780a; --good: #2f8f5e; --good-soft: #dff2e7;
-    --warn: #c26a12; --warn-soft: #fbeedd; --bad: #b3261e; --bad-soft: #f9e2df; --paper: #ffffff; --sumi: #1f1f1d;
-    --brush: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --bg: #f4efe3; --card: #fffdf7; --ink: #1b1611; --quiet: #7a6c58; --line: #d9ccb2; --chip: #f1e9d8;
+    --accent: #b8261a; --accent-soft: #f8e3dc; --gold: #9a6f12; --good: #2f7a52; --good-soft: #e1efe4;
+    --warn: #b26a12; --warn-soft: #f7ead6; --bad: #b8261a; --bad-soft: #f6dcd6; --paper: #fffdf7; --sumi: #1b1611;
+    --brush: "Yuji Syuku", "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
     color-scheme: light;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink);
     font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-    background: var(--bg); }
+    background: radial-gradient(120% 50% at 50% 0%, #fffaf0 0%, #f4efe3 60%) fixed, #f4efe3; }
   main { max-width: 520px; margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 16px 48px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; margin-bottom: 10px; }
   .label { font-size: 13px; color: var(--quiet); }
@@ -345,95 +347,88 @@
   .sw button.on { box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--ink); }
   .due.ok { background: var(--good-soft); color: #8fd0aa; }
   .item > .label { white-space: nowrap; }
-  /* ---- ふつうの見た目（上の装飾を打ち消す） ---- */
-  * { text-shadow: none !important; letter-spacing: normal; }
-  h2, .title, .pet .name, .today .msg, .result b, .cell .nm, .dname, .ovhead h1, .reveal .rhead, .tabs button b, .big, .pop { font-family: inherit; }
-  h2 { font-weight: 700; font-size: 16px; color: var(--ink); }
-  .title { color: var(--quiet); }
-  .pet .name { font-weight: 700; font-size: 18px; }
-  .card { border-radius: 16px; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  .pet .face { border-radius: 24px; color: var(--ink); background: var(--accent-soft); box-shadow: none; font-size: 30px; }
-  .pet .face.plant { color: var(--good); background: var(--good-soft); box-shadow: none; }
-  .pet .face.wilt { color: var(--bad); background: var(--bad-soft); box-shadow: none; }
-  .bar { height: 8px; border-radius: 99px; background: var(--chip); }
-  .bar > div, .bar.green > div, .bar.violet > div, .bar.pace.good > div, .bar.pace.warn > div, .bar.pace.bad > div { border-radius: 99px; box-shadow: none; }
-  .bar > div { background: var(--accent); } .bar.green > div, .bar.pace.good > div { background: var(--good); }
-  .bar.violet > div { background: #8a5cc2; } .bar.pace.warn > div { background: var(--warn); } .bar.pace.bad > div { background: var(--bad); }
-  .bar.pace i { background: var(--ink); opacity: .5; }
-  .stat { background: var(--chip); border-radius: 12px; }
-  .streak { border-radius: 14px; background: var(--chip); }
-  .streak.on { background: linear-gradient(90deg, var(--accent-soft), var(--warn-soft)); box-shadow: none; }
-  .streak .flame, .streak.on .flame { font-size: 30px; color: inherit; }
-  .streak .flame { filter: grayscale(1); opacity: .5; } .streak.on .flame { filter: none; opacity: 1; }
-  .big { border-radius: 20px; font-weight: 800; font-size: 26px; line-height: 1.3; color: #fff; animation: none;
-    background: var(--accent); box-shadow: 0 6px 0 #b86f00; }
-  .big small { font-family: inherit; font-size: 13px; opacity: .9; }
-  .big:active { box-shadow: 0 2px 0 #b86f00; }
-  .big.second { background: var(--good); box-shadow: 0 6px 0 #1f6a44; font-size: 24px; }
-  .big.second:active { box-shadow: 0 2px 0 #1f6a44; }
-  .big.study { background: #8a5cc2; box-shadow: 0 6px 0 #5d3a8a; }
-  .today .msg { font-weight: 700; font-size: 19px; }
-  .result { border-radius: 14px; border-left: 0; }
-  .result b { font-weight: 700; font-size: 18px; }
-  .weeks .c { border-radius: 8px; }
-  .weeks .c.perfect { background: var(--good); color: #fff; box-shadow: none; }
-  .weeks .c.half { background: var(--warn); color: #fff; } .weeks .c.over { background: var(--bad); color: #fff; }
-  .legend i { border-radius: 3px; }
-  .btn, .add input[type=text], .add textarea, .add input[type=date], input[type=time], input[type=number], .grid input[type=text], .add select, .grow input { border-radius: 10px; }
-  .btn.main { background: var(--accent); box-shadow: none; }
-  .tick { border-radius: 10px; border-color: var(--line); }
-  .tick.on { background: var(--good); border-color: var(--good); box-shadow: none; }
-  .days button { border-radius: 999px; }
-  .days button.on { background: var(--good-soft); border-color: var(--good); color: var(--ink); }
-  .sugs { border-radius: 12px; background: var(--accent-soft); box-shadow: none; }
-  .sugs .item { border-top-color: rgba(0,0,0,.06); }
-  .tabs { background: var(--card); border-top: 1px solid var(--line); backdrop-filter: none; }
-  .tabs button { border-radius: 12px; }
-  .tabs button b { font-weight: 700; font-size: 16px; }
-  .tabs button.on { background: var(--accent-soft); box-shadow: none; } .tabs button.on b { color: var(--accent); }
-  .pop { color: var(--accent); font-weight: 800; }
+  /* ---- ライトモードの厨二（上の闇色を白い紙に置きかえる） ---- */
+  .card { border-radius: 3px; border: 1px solid var(--line); background: var(--card);
+    box-shadow: inset 0 0 0 3px var(--card), inset 0 0 0 4px rgba(184,38,26,.18), 0 4px 14px rgba(60,40,20,.08); }
+  h2 { color: var(--accent); }
+  h2::before { content: '■'; font-size: .6em; margin-right: 6px; vertical-align: .25em; color: var(--accent); }
+  .pet .face { color: var(--ink); background: radial-gradient(circle at 40% 35%, #fffdf7, #efe4cc); box-shadow: 0 0 0 1px var(--gold), 0 0 0 4px var(--card), 0 0 0 5px rgba(154,111,18,.35); }
+  .pet .face.plant { color: var(--good); background: radial-gradient(circle at 40% 35%, #fbfff9, #dcebdc); box-shadow: 0 0 0 1px var(--good); }
+  .pet .face.wilt { color: var(--bad); background: radial-gradient(circle at 40% 35%, #fff6f3, #f1d6cf); box-shadow: 0 0 0 1px var(--bad); }
+  .bar { background: #e9dfca; }
+  .bar > div { background: linear-gradient(90deg, #6e130b, var(--accent), #e0603a); box-shadow: none; }
+  .bar.green > div { background: linear-gradient(90deg, #1d4f35, var(--good), #6fb38c); box-shadow: none; }
+  .stat { background: var(--chip); box-shadow: inset 0 0 0 1px var(--line); }
+  .streak { background: var(--chip); box-shadow: inset 0 0 0 1px var(--line); }
+  .streak.on { background: linear-gradient(90deg, #f8dcd2, #fbf1e4); box-shadow: inset 0 0 0 1px rgba(184,38,26,.45); }
+  .streak.on .flame { color: var(--accent); text-shadow: 0 0 10px rgba(232,90,50,.45); }
+  .streak .flame { color: var(--accent); }
+  .big { color: #fff8ee; background: linear-gradient(180deg, #c73224, #8a1a10);
+    box-shadow: 0 0 0 1px #8a1a10, inset 0 0 0 3px rgba(255,240,220,.25), 0 5px 0 #5a0f08, 0 8px 22px rgba(184,38,26,.35);
+    text-shadow: 0 1px 0 rgba(0,0,0,.25); animation: breatheL 2.4s ease-in-out infinite; }
+  .big:active { box-shadow: 0 0 0 1px #8a1a10, 0 1px 0 #5a0f08; }
+  @keyframes breatheL { 50% { box-shadow: 0 0 0 1px #8a1a10, inset 0 0 0 3px rgba(255,240,220,.35), 0 5px 0 #5a0f08, 0 10px 34px rgba(220,60,30,.55); } }
+  .big.second { background: linear-gradient(180deg, #2f7a52, #164a30); box-shadow: 0 0 0 1px #164a30, inset 0 0 0 3px rgba(230,255,240,.2), 0 5px 0 #0b2b1b, 0 8px 22px rgba(47,122,82,.3); }
+  .big.second:active { box-shadow: 0 0 0 1px #164a30, 0 1px 0 #0b2b1b; }
+  .big.study { background: linear-gradient(180deg, #7b45a3, #4a2468); box-shadow: 0 0 0 1px #4a2468, 0 5px 0 #2a1240, 0 8px 22px rgba(123,69,163,.3); }
+  .result { background: var(--chip); }
+  .result.perfect { background: var(--good-soft); } .result.half { background: var(--warn-soft); } .result.over { background: var(--bad-soft); }
+  .weeks .c.perfect { background: #f3e2b0; color: #5a3f05; box-shadow: inset 0 0 0 1px var(--gold); }
+  .weeks .c.half { background: #f2dcc0; color: #7a4508; } .weeks .c.over { background: var(--accent); color: #fff; }
+  .btn.main { background: linear-gradient(180deg, #c73224, #8a1a10); color: #fff; box-shadow: none; }
+  .btn.danger { color: var(--bad); box-shadow: inset 0 0 0 1px rgba(184,38,26,.4); }
+  .tick { border-color: #b9a988; background: var(--card); }
+  .tick.on { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px rgba(184,38,26,.35); }
+  .days button.on { background: var(--accent); color: #fff; }
+  .sugs { background: #fbf3e2; box-shadow: inset 0 0 0 1px #e2d0a8; }
+  .sugs .item { border-top-color: var(--line); }
+  .tabs { background: rgba(255,253,247,.94); border-top: 1px solid var(--line); }
+  .tabs button.on { background: var(--accent-soft); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .tabs button.on b { color: var(--accent); text-shadow: none; }
+  .pop { color: var(--accent); text-shadow: 0 0 2px #fff, 0 0 12px rgba(255,255,255,.9), 0 0 24px rgba(232,90,50,.5); }
   .graves { border-top-color: var(--line); }
-  /* 霊獣の絵は白い台紙に */
-  .art { background: #f7f3ea; border-radius: 14px; box-shadow: 0 0 0 1px var(--line); }
-  .art .glyph { color: #3a3631; }
-  .art .seal { font-family: inherit; font-size: calc(var(--s) * .11); border-radius: 6px; background: var(--accent); color: #fff; box-shadow: none; }
-  .art.r1 { box-shadow: 0 0 0 2px var(--good); } .art.r2 { box-shadow: 0 0 0 2px #4a78c8; }
-  .art.r3 { box-shadow: 0 0 0 2px #8a5cc2; } .art.r4 { box-shadow: 0 0 0 2px var(--gold); }
-  .art.st2, .art.st3 { outline-color: var(--gold); }
-  .art.st3::after { display: none; }
-  .art.egg { background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); animation: none; }
+  /* 魔物の絵: 白い紙に墨。縁は印 */
+  .art { background: radial-gradient(circle at 50% 45%, #fffdf6, #f3ead6 80%, #e6d8b8);
+    box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 1px #c9b48a, 0 4px 12px rgba(60,40,20,.15); }
+  .art.r1 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px var(--good); }
+  .art.r2 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px #3f68b0, 0 0 12px rgba(63,104,176,.3); }
+  .art.r3 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px #7b45a3, 0 0 16px rgba(123,69,163,.35); }
+  .art.r4 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px var(--gold), 0 0 22px rgba(201,150,40,.5); }
+  .art.st3::after { background: radial-gradient(circle, rgba(230,70,40,.35), transparent 70%); }
+  .art.egg { background: radial-gradient(circle at 40% 35%, #fffdf6, #eadcbc); box-shadow: 0 0 0 1px var(--gold), 0 0 22px rgba(201,150,40,.35); }
   .art.egg .glyph { color: var(--accent); }
-  .art.grave { background: var(--chip); box-shadow: 0 0 0 1px var(--line); }
-  .art.grave .glyph { color: var(--quiet); }
-  .xphead b, .rules summary, .rules dt, .gedit summary, .cell .stars { color: var(--gold); }
-  .dexbtn { color: var(--ink); background: var(--chip); box-shadow: none; }
-  .ov { background: var(--bg); }
-  .ovhead h1, .dname, .reveal .rhead, .tag, .tap, .big { letter-spacing: normal; }
-  .ovhead h1 { font-weight: 700; font-size: 22px; color: var(--ink); }
-  .x { border: 1px solid var(--line); background: var(--card); border-radius: 12px; }
-  .cell { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
-  .cell .nm { font-size: 14px; font-weight: 600; }
-  .cell.unk { background: var(--chip); } .cell.unk .q { color: #cfc6b5; }
-  .cell.r3 { border-color: #c9b2e6; } .cell.r4 { border-color: #e2c27a; box-shadow: none; }
-  .dname { font-size: 34px; font-weight: 700; }
-  .dname rt { font-family: inherit; }
-  .tag, .pill { border-radius: 99px; border-color: var(--line); }
-  .tag.r1, .pill.good { color: var(--good); border-color: #b6dcc6; } .tag.r2 { color: #3f68b0; border-color: #bccbe8; }
-  .tag.r3 { color: #7a4cb2; border-color: #d5c3ec; } .tag.r4 { color: var(--gold); border-color: #e9d29b; }
-  .pill.warn { border-color: #efcfa6; } .pill.bad { border-color: #efbdb8; }
-  .desc { border-left: 3px solid var(--accent); background: var(--chip); border-radius: 0 10px 10px 0; }
+  .art.grave { background: radial-gradient(circle at 40% 35%, #f4f1ea, #d9d3c6); box-shadow: 0 0 0 1px #a59c8c; }
+  .art.grave .glyph { color: #6f675a; }
+  .dexbtn { color: var(--accent); background: linear-gradient(90deg, #fbf3e2, #f6e6c6, #fbf3e2); box-shadow: inset 0 0 0 1px #d9c08a; }
+  .dexbtn b { color: var(--ink); }
+  .ov { background: radial-gradient(120% 70% at 50% 0%, #fffaf0, #f1ead9 60%) fixed; }
+  .ovhead h1 { color: var(--accent); text-shadow: none; }
+  .x { border: 1px solid var(--line); background: var(--card); }
+  .cell { background: var(--card); border: 1px solid var(--line); }
+  .cell.unk { background: repeating-linear-gradient(45deg, #f1e9d8 0 6px, #ebe1cc 6px 12px); }
+  .cell.unk .q { color: #cdbd9c; }
+  .cell.r3 { border-color: #b893d6; } .cell.r4 { border-color: #d0a849; box-shadow: 0 0 10px rgba(201,150,40,.25); }
+  .dname { text-shadow: none; }
+  .tag { border-color: var(--line); }
+  .tag.r1 { color: var(--good); border-color: #a9d0b8; } .tag.r2 { color: #3f68b0; border-color: #b4c6e8; }
+  .tag.r3 { color: #7b45a3; border-color: #d2bce6; } .tag.r4 { color: var(--gold); border-color: #e2c98d; }
+  .desc { background: #fbf6ea; }
   .btn.on { background: var(--good-soft); }
-  .reveal .ring { display: none; }
-  .reveal .rhead { font-size: 20px; font-weight: 700; color: var(--accent); }
-  .reveal.r4 .rhead { color: var(--gold); }
-  .reveal .art.big { animation: rise .6s ease-out both; }
-  .tap { letter-spacing: normal; }
-  .grad { background: #f3ecfa; box-shadow: none; border-radius: 12px; }
-  .clock.on { color: var(--ink); }
-  .genre .sb, .subj .sb { background: var(--chip); border-radius: 99px; overflow: hidden; }
-  .genre .sb i { background: var(--accent); }
+  .reveal .ring { background: repeating-conic-gradient(from 0deg, rgba(184,38,26,.16) 0 4deg, transparent 4deg 15deg); }
+  .reveal.r4 .ring { background: repeating-conic-gradient(from 0deg, rgba(201,150,40,.3) 0 4deg, transparent 4deg 12deg); }
+  .reveal.r3 .ring { background: repeating-conic-gradient(from 0deg, rgba(123,69,163,.22) 0 4deg, transparent 4deg 12deg); }
+  .reveal .rhead { color: var(--accent); text-shadow: none; } .reveal.r4 .rhead { color: var(--gold); }
+  @keyframes ink { from { filter: blur(18px) brightness(1.6); transform: scale(.6) rotate(-6deg); opacity: 0; } }
+  .bar.violet > div { box-shadow: none; } .bar.pace.good > div { box-shadow: none; }
+  .bar.pace i { background: var(--ink); opacity: .5; }
+  .pill { border-color: var(--line); } .pill.good { color: var(--good); border-color: #a9d0b8; }
+  .pill.warn { border-color: #e6c49a; } .pill.bad { border-color: #e6b0a8; }
+  .grad { background: #f3ecfa; box-shadow: inset 0 0 0 1px #c9aee3; }
+  .clock.on { text-shadow: 0 0 12px rgba(123,69,163,.3); }
+  .genre .sb, .subj .sb { background: #e9dfca; }
   .due.ok { color: var(--good); }
-  .recap { background: rgba(0,0,0,.35); }
+  .recap { background: rgba(40,25,10,.35); }
+  .item { border-top-color: var(--line); }
 </style>
 </head>
 <body>
@@ -449,9 +444,9 @@ const XP = { perfect: 20, half: -30, over: -150 };   // 二度寝・寝坊は大
 const WAKE = { from: '2026-11-03', ok: ['2026-11-03'] };
 const BONUS = 7, BONUS_XP = 30;   // 7日続くごとにボーナス
 const RESULT = {
-  perfect: '大成功！',
-  half: '半分成功 ― 2回目が押せなかった',
-  over: '寝坊',
+  perfect: '完全覚醒 ― 二度寝の誘惑を断ち切った',
+  half: '半覚醒 ― 二度寝の確認ができなかった',
+  over: '寝坊 ― 闇に呑まれた',
 };
 // 相棒の成長段階。lv はその段階になるレベル。名は五行ごとの二つ名で飾る
 const STAGES = [
@@ -463,7 +458,7 @@ const stageName = (b, k) => [`${b.k}ノ仔`, b.k, `${EPITHET[b.e]}ノ${b.k}`, `�
 const stars = n => n >= 12 ? 5 : n >= 7 ? 4 : n >= 4 ? 3 : n >= 2 ? 2 : 1;
 const PLANTS = [
   { lv: 1, face: '種', name: '眠れる種子' }, { lv: 2, face: '芽', name: '目覚めの芽' }, { lv: 3, face: '葉', name: '若葉' },
-  { lv: 5, face: '苗', name: '霊苗' }, { lv: 7, face: '蕾', name: 'つぼみ' }, { lv: 10, face: '華', name: '花' },
+  { lv: 5, face: '苗', name: '霊苗' }, { lv: 7, face: '蕾', name: '紅き蕾' }, { lv: 10, face: '華', name: '血華' },
   { lv: 14, face: '樹', name: '古樹' }, { lv: 19, face: '桜', name: '妖桜' }, { lv: 25, face: '神木', name: '世界樹' },
 ];
 // 日付などの文字列から決まる乱数。同じ記録からは何度計算しても同じ魔物が出る
@@ -876,7 +871,7 @@ function beast(id, mon) {
   const A = beast(h.a, mon), B = beast(h.b, mon);
   const k = A.k[0] === B.k.slice(-1) ? A.k + B.k.slice(-1) : A.k[0] + B.k.slice(-1);
   return { id, k, y: '', r: Math.max(A.r, B.r), t: A.t, e: B.e, s: `異種交配（${A.k} × ${B.k}）`, f: [A.f[0], B.f[B.f.length - 1]],
-    d: `${A.k}と${B.k}の血を継ぐ異形。${A.f[0]}と${B.f[B.f.length - 1]}をあわせもつ。世界に1体だけ。`, a: A, b: B };
+    d: `${A.k}と${B.k}の血を継ぐ異形。${A.f[0]}と${B.f[B.f.length - 1]}をあわせもつ。この世にただ一体しかいない。`, a: A, b: B };
 }
 // 絵。古い絵があればそれ、なければ名前を書で。交配の子は両親の絵を左右に重ねる
 function artHTML(b, cls = '', id = '') {
@@ -899,20 +894,20 @@ function petCard(st) {
       <div class="label">${RARITY[b.r].name} ${'★'.repeat(stars(m.own[m.partner] || 1))} ・ Lv.${st.lv}</div>
       <div class="bar"><div style="width:${pct}%"></div></div>
       <div class="label">次のLvまで ${st.need - st.into} XP</div></div>`
-    : `<div class="art egg" id="face"><span class="glyph">卵</span></div><div class="info"><div class="name">たまご</div><div class="label">早起きに大成功した朝に孵る</div></div>`;
+    : `<div class="art egg" id="face"><span class="glyph">封</span></div><div class="info"><div class="name">封ぜられし卵</div><div class="label">早起きに大成功した朝に孵る</div></div>`;
   const td = Calc.ymd(now()), tj = Calc.judge(Calc.plan(td, S.settings), S.log[td], now(), S.settings);
   const lost = td >= S.settings.start && tj.result === 'over'
     ? `<p class="note" style="margin-top:10px">今朝の報告を押し忘れただけなら、下の「やっぱり起きてた！」で相棒がもどってくる。</p>` : '';
   return `<section class="card"><div class="pet">${who}</div>${lost}
-    <div class="streak ${st.streak ? 'on' : ''}"><div class="flame">🔥</div><div><b>${st.streak}</b><span>日連続</span></div>
-      <div class="sub">最高 ${st.best}日<br>あと${st.toBonus}日でボーナス</div></div>
+    <div class="streak ${st.streak ? 'on' : ''}"><div class="flame">焔</div><div><b>${st.streak}</b><span>日連続</span></div>
+      <div class="sub">最高 ${st.best}日<br>あと${st.toBonus}日で特別召喚</div></div>
     ${todayXP(st)}
     <button class="btn dexbtn" data-m="dex">図鑑 <b>${found}</b> / ${BEASTS.length}</button>
     <details class="rules"${S.rulesOpen ? ' open' : ''}><summary>育て方</summary>
       <p class="note">早起き・日課・TODO・勉強の経験値は、ぜんぶこの1体に入る。</p>
       <dl>
-        <dt>早起き</dt><dd>大成功 +${XP.perfect}・霊獣が1体やってくる ／ 二度寝 −${-XP.half}・連続は0に ／ 寝坊 −${-XP.over}・相棒の★が1つ減る</dd>
-        <dt>連続</dt><dd>大成功が${BONUS}日続くごとに +${BONUS_XP}・珍しい霊獣が来る</dd>
+        <dt>早起き</dt><dd>完全覚醒 +${XP.perfect}・魔物が1体召喚に応じる ／ 二度寝 −${-XP.half}・連続は0に ／ 寝坊 −${-XP.over}・相棒の★が1つ減る</dd>
+        <dt>連続</dt><dd>完全覚醒が${BONUS}日続くごとに +${BONUS_XP}・珍しい魔物を特別召喚</dd>
         <dt>日課</dt><dd>できたら +5 ／ サボると −5</dd>
         <dt>TODO</dt><dd>終えたら +8 ／ 期限切れは1日ごとに −3</dd>
         <dt>勉強</dt><dd>5分ごとに +1 ／ 週の目標に届くと +30・勉強でしか会えない魔物も出る特別召喚 ／ 届かないと −40</dd>
@@ -932,17 +927,17 @@ function dexView(st) {
   if (S.dex !== 'grid') return dexDetail(st, S.dex);
   const cell = b => {
     const id = String(b.id), no = String(b.id).padStart(3, '0');
-    if (!m.seen[id]) return `<div class="cell unk"><span class="no">No.${no}</span><span class="q">？</span></div>`;
+    if (!m.seen[id]) return `<div class="cell unk"><span class="no">其ノ${no}</span><span class="q">？</span></div>`;
     const n = m.own[id] || 0;
-    return `<button class="cell r${b.r} ${n ? '' : 'gone'}" data-m="see" data-id="${id}"><span class="no">No.${no}</span>${artHTML(b, 'mini')}
+    return `<button class="cell r${b.r} ${n ? '' : 'gone'}" data-m="see" data-id="${id}"><span class="no">其ノ${no}</span>${artHTML(b, 'mini')}
       <span class="nm">${esc(b.k)}</span><span class="stars">${n ? '★'.repeat(stars(n)) : '逃走'}</span></button>`;
   };
   const cells = BEASTS.filter(b => b.id <= MORNING).map(cell).join(''), scells = BEASTS.filter(b => b.id > MORNING).map(cell).join('');
   const hy = Object.keys(m.hybrids).map(id => { const b = beast(id, m), n = m.own[id] || 0;
     return `<button class="cell r${b.r} ${n ? '' : 'gone'}" data-m="see" data-id="${id}"><span class="no">異種</span>${artHTML(b, 'mini')}<span class="nm">${esc(b.k)}</span><span class="stars">${n ? '★' : '逃走'}</span></button>`; }).join('');
   const found = Object.keys(m.seen).filter(id => !id.startsWith('h')).length;
-  return `<div class="ov"><div class="inner"><div class="ovhead"><h1>霊獣図鑑</h1><button class="x" data-m="close" aria-label="閉じる">✕</button></div>
-    <p class="note">見つけた霊獣 ${found} / ${BEASTS.length}。早起き大成功の朝ごとに1体やってくる。</p>
+  return `<div class="ov"><div class="inner"><div class="ovhead"><h1>妖 魔 図 鑑</h1><button class="x" data-m="close" aria-label="閉じる">✕</button></div>
+    <p class="note">記されし魔物 ${found} / ${BEASTS.length}。完全に目覚めた朝ごとに、一体が召喚に応じる。</p>
     <div class="dexgrid">${cells}</div><h2 class="sec">勉強の霊獣</h2><p class="note">朝には現れない。勉強の卵から神獣まで育てて卒業させると、ここに記される。</p><div class="dexgrid">${scells}</div>${hy ? `<h2 class="sec">異種交配</h2><div class="dexgrid">${hy}</div>` : ''}</div></div>`;
 }
 function dexDetail(st, id) {
@@ -958,7 +953,7 @@ function dexDetail(st, id) {
     act = `<div class="acts">${isP ? '<div class="btn on">いまの相棒</div>' : `<button class="btn main" data-m="pick" data-id="${id}">相棒にする</button>`}
       ${!b.a && n >= 2 ? `<button class="btn" data-m="breed" data-id="${id}" ${mates.length ? '' : 'disabled'}>交配する${mates.length ? '' : '（★2の相手がいない）'}</button>` : ''}</div>
       ${!b.a && n < 2 ? '<p class="note">同じ魔物がもう一体来ると合体して★2に。★2どうしなら交配できる。</p>' : ''}`;
-  } else act = `<p class="note">寝坊の朝にいなくなった。${b.study ? '勉強の卵からもう一度育てよう。' : 'また来るのを待とう。'}</p>`;
+  } else act = `<p class="note">寝坊の朝に逃げ去った。${b.study ? '勉強の卵からもう一度育てよう。' : 'もう一度召喚に応じるのを待て。'}</p>`;
   return `<div class="ov"><div class="inner detail"><div class="ovhead"><button class="x" data-m="back" aria-label="もどる">←</button><button class="x" data-m="close" aria-label="閉じる">✕</button></div>
     ${artHTML(b, 'big')}
     <div class="dname"><ruby>${esc(b.k)}<rt>${esc(b.y)}</rt></ruby></div>
@@ -971,10 +966,10 @@ function revealView(st) {
   const ev = st.mon.events, shown = store.get('ha-shown', 0);
   if (shown >= ev.length) return '';
   const e = ev[shown], b = beast(e.id, st.mon); if (!b) return '';
-  const head = e.kind === 'breed' ? 'あたらしい霊獣が生まれた！' : e.kind === 'study' ? '卒業！' : e.kind === 'move' ? '引っ越し' : e.n > 1 ? '合体！' : ['霊獣が来た！', '霊獣が来た！', '珍しい霊獣が来た！', 'とても珍しい霊獣が来た！', '神獣が来た！'][b.r];
-  const sub = e.kind === 'breed' ? '交配で生まれた' : e.kind === 'study' ? `勉強で育てた霊獣が仲間に加わった${e.n > 1 ? ` ・ ★${stars(e.n)}` : ''}`
+  const head = e.kind === 'breed' ? '異 種 誕 生' : e.kind === 'study' ? '卒 業' : e.kind === 'move' ? '引 越' : e.n > 1 ? '合 体' : ['召 喚', '召 喚', '降 臨', '顕 現', '神 獣 降 臨'][b.r];
+  const sub = e.kind === 'breed' ? '二つの血がひとつになった' : e.kind === 'study' ? `勉強で育てた霊獣が仲間に加わった${e.n > 1 ? ` ・ ★${stars(e.n)}` : ''}`
     : e.kind === 'move' ? `山海勉強録の広場から移ってきた${e.n > 1 ? ` ・ ★${stars(e.n)}` : ''}`
-    : e.n > 1 ? `${b.k}が重なり ★${stars(e.n)} に` : e.kind === 'bonus' ? '7日連続のごほうび！珍しい霊獣が来た' : '早起きのごほうび！霊獣が来た';
+    : e.n > 1 ? `${b.k}が重なり ★${stars(e.n)} に` : e.kind === 'bonus' ? '七日の誓いに応え、珍しき魔物が現れた' : '朝の気配に応え、魔物が現れた';
   return `<div class="ov reveal r${b.r}" data-m="next"><div class="ring"></div>
     <div class="rhead">${head}</div>${artHTML(b, 'big')}<div class="dname">${esc(b.k)}</div>
     <div class="label">${RARITY[b.r].name} ・ ${esc(sub)}</div><div class="tap">タップして続ける${ev.length - shown > 1 ? `（あと${ev.length - shown - 1}）` : ''}</div></div>`;
@@ -992,25 +987,25 @@ function todayCard(t) {
     const nx = nextWake(d);
     body = `<div class="msg">今日は目標なし 🌙</div><div class="hint">${nx ? `次は ${nx}。前の日は早めに寝よう` : '設定で起きる時間を入れてね'}</div>`;
   } else if (j.phase === 'early') {
-    body = `<div class="msg">まだ早いよ</div><div class="hint">${Calc.hm(p.open)} から押せるようになります</div>`;
+    body = `<div class="msg">まだ夜の刻</div><div class="hint">${Calc.hm(p.open)} から押せるようになる。寝坊すれば相棒は逃げ去る</div>`;
   } else if (j.phase === 'wake') {
-    body = `<div class="hint">あと <b data-until="${+p.close}">${mmss(p.close - t)}</b> 以内に押してね。間に合わないと寝坊になります</div>
-      <button class="big" data-act="c1">起きた！</button>`;
+    body = `<div class="hint">あと <b data-until="${+p.close}">${mmss(p.close - t)}</b> 以内に押せ。間に合わなければ相棒は逃げ去る</div>
+      <button class="big" data-act="c1">覚 醒<small>起きた！</small></button>`;
   } else if (j.phase === 'wait') {
     body = `<div class="row2"><div class="msg">二度寝チェックまで</div><div class="count" data-until="${+j.from}">${mmss(j.from - t)}</div></div>
       <div class="hint">布団から出て、顔を洗ったり着替えたりしておこう。${Calc.hm(j.from)} から ${WIN}分のあいだに「まだ起きてる！」を押してね。スマホのタイマーを${S.settings.gap}分にしておくと確実です。</div>`;
   } else if (j.phase === 'second') {
     body = `<div class="hint">あと <b data-until="${+j.until}">${mmss(j.until - t)}</b> 以内に押してね。押せないと連続記録が0に戻ります</div>
-      <button class="big second" data-act="c2">まだ起きてる！</button>`;
+      <button class="big second" data-act="c2">二度寝ヲ断ツ<small>まだ起きてる！</small></button>`;
   } else {
     const r = j.result;
     const times = [j.c1 && `起きた ${Calc.hm(j.c1)}`, j.c2 && `2回目 ${Calc.hm(j.c2)}`].filter(Boolean).join(' ・ ');
     body = `<div class="result ${r}"><b>${RESULT[r]}</b> <span>${j.xp >= 0 ? '+' : '−'}${Math.abs(j.xp)} XP</span>${times ? `<div class="label">${times}</div>` : ''}
-      ${r === 'over' ? '<div class="note">寝坊したので、相棒の★が1つ減り、経験値も減りました。★がなくなると相棒はいなくなります</div>' : ''}
+      ${r === 'over' ? '<div class="note">寝坊の朝、相棒は★を一つ失い、経験値も大きく減った。★がなくなった魔物は去っていく</div>' : ''}
       ${r === 'half' ? '<div class="note">連続記録は0に戻りました</div>' : ''}
       ${j.fixed && (S.settings.wakeFix || []).includes(d) ? '<div class="label">あとから成功にした朝</div>' : ''}</div>
       ${r === 'over' || r === 'half' ? `<div class="hint" style="margin-top:12px">ほんとうは起きてたのに押し忘れただけなら、下を押せば<b>相棒も経験値も元にもどる</b>。今日のうちでも、あとからでも押せる</div>
-      <button class="big second" data-act="fix" data-d="${d}">やっぱり起きてた！<small>押し忘れた日</small></button>` : ''}
+      <button class="big second" data-act="fix" data-d="${d}">実ハ起キテイタ<small>やっぱり起きてた！（押し忘れ）</small></button>` : ''}
       ${j.fixed && (S.settings.wakeFix || []).includes(d) ? `<button class="btn" data-act="unfix" data-d="${d}" style="margin-top:8px">まちがえて押した → 取り消す</button>` : ''}`;
   }
   return `<section class="card today">${head}${body}</section>`;
@@ -1042,10 +1037,10 @@ function weeksCard(t) {
       ? `<button class="${cls}" data-act="fix" data-d="${d}" title="押し忘れなら成功にする">${Number(d.slice(8))}</button>`
       : `<div class="${cls}">${Number(d.slice(8))}</div>`;
   }
-  return `<section class="card"><h2>きろく</h2><div class="weeks">${cells}</div>
-    <div class="legend"><span><i style="background:var(--good)"></i>大成功</span><span><i style="background:var(--warn)"></i>半分成功</span>
-    <span><i style="background:var(--bad)"></i>寝坊</span><span><i style="background:var(--chip)"></i>目標がある日</span></div>
-    <p class="note">起きてたのに押し忘れた日は、寝坊・半分成功の日をタップすると成功にできる（相棒ももどる）。</p></section>`;
+  return `<section class="card"><h2>戦歴</h2><div class="weeks">${cells}</div>
+    <div class="legend"><span><i style="background:#f3e2b0;box-shadow:inset 0 0 0 1px var(--gold)"></i>完全覚醒</span><span><i style="background:#f2dcc0"></i>半覚醒</span>
+    <span><i style="background:#b8261a"></i>寝坊</span><span><i style="background:var(--chip)"></i>目標がある日</span></div>
+    <p class="note">起きてたのに押し忘れた日は、寝坊・半覚醒の日をタップすると成功にできる（相棒ももどる）。</p></section>`;
 }
 
 function settingsCard() {
@@ -1065,6 +1060,9 @@ function settingsCard() {
       <label>合言葉</label><input type="text" id="apikey" value="${esc(Sync.conf ? Sync.conf.key : '')}" autocomplete="off"></div>
     <button class="btn main" data-act="api">${Sync.conf ? 'つなぎ直す' : 'つなぐ'}</button>
     ${Sync.conf ? '<button class="linkbtn" data-act="apioff" style="color:var(--quiet)">連携をやめる（記録はこの端末に残ります）</button>' : ''}
+    <h2 style="margin-top:18px">記録をリセット</h2>
+    <p class="note">早起きの記録・経験値・霊獣と図鑑・勉強の記録・日課のチェックの記録を消して、明日の朝から0で始めます。日課・TODO・起きる時間・教科はそのまま残ります。</p>
+    <button class="btn danger" data-act="wipe">記録をぜんぶ消す</button>
   </details></section>`;
 }
 
@@ -1203,7 +1201,7 @@ function timerCard(t) {
   const opts = sel => (none ? '<option value="" selected disabled>教科を選ぶ</option>' : '') + ss.subjects.map(x => `<option value="${x.id}" ${x.id === sel ? 'selected' : ''}>${esc(x.name)}</option>`).join('') + '<option value="__new">＋ 教科を追加…</option>';
   return `<section class="card"><div class="head"><h2>勉強タイマー</h2>${tm ? `<span class="label">計測中 ・ ${esc(subjOf(tm.s).name)}</span>` : ''}</div>
     <div class="clock ${tm ? 'on' : ''}" data-clock>${clockText()}</div>
-    ${tm ? `<button class="big study" data-s="stop">終わって記録する</button><button class="linkbtn" style="color:var(--quiet)" data-s="cancel">取り消す</button>`
+    ${tm ? `<button class="big study" data-s="stop">記 録<small>終わって記録する</small></button><button class="linkbtn" style="color:var(--quiet)" data-s="cancel">取り消す</button>`
       : `<form class="add" data-form="start"><select name="s">${opts(S.lastSubj)}</select><button class="btn main" ${none ? 'disabled' : ''}>スタート</button></form>`}
     <h2 style="margin-top:16px">あとから手で追加</h2>
     <form class="add" data-form="manual"><select name="s">${opts(S.lastSubj)}</select>
@@ -1223,16 +1221,16 @@ function studyChart(z, t) {
   const W = 700, top = 26, bot = 196, left = 12, colW = (W - left * 2) / 7, bw = Math.min(54, colW * .55), y = v => bot - v / ymax * (bot - top);
   const ti = (t.getDay() + 6) % 7;
   const ids = [...ss.subjects.map(x => x.id), ...Object.keys(by).filter(k => !ss.subjects.some(x => x.id === k))];
-  let svg = `<svg viewBox="0 0 ${W} 230" role="img" aria-label="曜日ごとの勉強時間"><line x1="${left}" x2="${W - left}" y1="${bot}" y2="${bot}" stroke="#ebe5d8" stroke-width="1.5"/>`;
+  let svg = `<svg viewBox="0 0 ${W} 230" role="img" aria-label="曜日ごとの勉強時間"><line x1="${left}" x2="${W - left}" y1="${bot}" y2="${bot}" stroke="#d9ccb2" stroke-width="1.5"/>`;
   days.forEach((o, i) => {
     const cx = left + colW * i + colW / 2; let acc = 0;
     ids.forEach(id => { const v = o[id]; if (!v) return; const y0 = y(acc), y1 = y(acc + v); acc += v;
       svg += `<rect x="${cx - bw / 2}" y="${y1}" width="${bw}" height="${Math.max(1, y0 - y1)}" fill="${subjOf(id).color}"><title>${esc(subjOf(id).name)} ${fmtMin(v)}</title></rect>`; });
-    if (tot[i]) svg += `<text x="${cx}" y="${y(tot[i]) - 7}" text-anchor="middle" font-size="15" fill="#1f1f1d">${fmtMin(tot[i])}</text>`;
-    svg += `<text x="${cx}" y="${bot + 24}" text-anchor="middle" font-size="16" fill="${i === ti ? '#e08a00' : '#6b6a66'}">${'月火水木金土日'[i]}</text>`;
+    if (tot[i]) svg += `<text x="${cx}" y="${y(tot[i]) - 7}" text-anchor="middle" font-size="15" fill="#1b1611">${fmtMin(tot[i])}</text>`;
+    svg += `<text x="${cx}" y="${bot + 24}" text-anchor="middle" font-size="16" fill="${i === ti ? '#b8261a' : '#7a6c58'}">${'月火水木金土日'[i]}</text>`;
   });
-  svg += `<line x1="${left}" x2="${W - left}" y1="${y(target)}" y2="${y(target)}" stroke="#6b6a66" stroke-dasharray="5 5" stroke-width="1.5"/>
-    <text x="${W - left}" y="${y(target) - 6}" text-anchor="end" font-size="13" fill="#6b6a66">1日の目安 ${fmtMin(target)}</text></svg>`;
+  svg += `<line x1="${left}" x2="${W - left}" y1="${y(target)}" y2="${y(target)}" stroke="#7a6c58" stroke-dasharray="5 5" stroke-width="1.5"/>
+    <text x="${W - left}" y="${y(target) - 6}" text-anchor="end" font-size="13" fill="#7a6c58">1日の目安 ${fmtMin(target)}</text></svg>`;
   const sum = list.reduce((a, e) => a + e.min, 0);
   const rows = Object.keys(by).sort((a, b) => by[b] - by[a]).map(id => { const x = subjOf(id), v = by[id];
     return `<div class="subj"><span class="chip"><i style="background:${x.color}"></i>${esc(x.name)}</span><span class="sb"><i style="width:${v / sum * 100}%;background:${x.color}"></i></span><span>${fmtMin(v)}</span></div>`; }).join('');
@@ -1290,9 +1288,9 @@ function studySettings(z) {
   </details></section>`;
 }
 function tabsBar() {
-  return `${Sync.conf ? `<div class="status" id="syncstatus">${esc(Sync.status)}</div>` : ''}<nav class="tabs"><button class="${S.tab === 'wake' ? 'on' : ''}" data-t="tab" data-v="wake"><b>⏰</b> 早起き</button>
-    <button class="${S.tab === 'tasks' ? 'on' : ''}" data-t="tab" data-v="tasks"><b>✅</b> TODO・日課</button>
-    <button class="${S.tab === 'study' ? 'on' : ''}" data-t="tab" data-v="study"><b>📚</b> 勉強</button></nav>`;
+  return `${Sync.conf ? `<div class="status" id="syncstatus">${esc(Sync.status)}</div>` : ''}<nav class="tabs"><button class="${S.tab === 'wake' ? 'on' : ''}" data-t="tab" data-v="wake"><b>暁</b> 早起き</button>
+    <button class="${S.tab === 'tasks' ? 'on' : ''}" data-t="tab" data-v="tasks"><b>修</b> TODO・日課</button>
+    <button class="${S.tab === 'study' ? 'on' : ''}" data-t="tab" data-v="study"><b>学</b> 勉強</button></nav>`;
 }
 
 const WIDE = window.matchMedia('(min-width: 1000px)');
@@ -1364,7 +1362,7 @@ document.addEventListener('click', e => {
     }
     render();
     const after = Calc.stats(S.log, S.settings, t, S);
-    if (act === 'c2') pop(after.lv > before.lv ? `レベルアップ Lv.${after.lv}` : `+${after.xp - before.xp} XP`);
+    if (act === 'c2') pop(after.lv > before.lv ? `覚醒 Lv.${after.lv}` : `+${after.xp - before.xp} XP`);
     else pop('目覚めよ');
   } else if (act === 'ics') {
     const blob = new Blob([Calc.ics(S.settings, t)], { type: 'text/calendar' });
@@ -1380,7 +1378,7 @@ document.addEventListener('click', e => {
     Sync.status = 'つないでいます…'; render(); Sync.run();
   } else if (act === 'fix') {
     const dd = b.dataset.d, dt = Calc.parse(dd);
-    if (!confirm(`${dt.getMonth() + 1}月${dt.getDate()}日の朝は、ほんとうは起きてた？\n「大成功」にして、逃げた相棒・減った★・減った経験値を元にもどします。`)) return;
+    if (!confirm(`${dt.getMonth() + 1}月${dt.getDate()}日の朝は、ほんとうは起きてた？\n「完全覚醒」にして、逃げた相棒・減った★・減った経験値を元にもどします。`)) return;
     const before = Calc.stats(S.log, S.settings, t, S);
     S.settings.wakeFix = [...new Set([...(S.settings.wakeFix || []), dd])];
     saveSettings(); render();
@@ -1392,6 +1390,15 @@ document.addEventListener('click', e => {
     if (!confirm('「やっぱり起きてた」を取り消して、もとの結果にもどしますか？')) return;
     S.settings.wakeFix = (S.settings.wakeFix || []).filter(x => x !== dd);
     saveSettings(); render();
+  } else if (act === 'wipe') {
+    if (!confirm('早起きの記録・経験値・霊獣と図鑑・勉強の記録・日課のチェックの記録をぜんぶ消して、明日から0で始めますか？\n（日課・TODO・設定は残ります。元にはもどせません）')) return;
+    const tm = Calc.addDays(d, 1), ss = S.settings;
+    ss.start = tm; ss.seed = tm + '|' + uid();
+    ss.picks = []; ss.breeds = []; ss.wakeFix = [];
+    S.log = {}; S.study = []; S.hlog = {};
+    if (ss.study) { ss.study.pets = []; ss.study.timer = null; delete ss.study.nextEgg; ss.study.from = Calc.week(Calc.parse(tm)); ss.study.pets.push(newPet(ss.study, 'もち', +Calc.parse(tm))); }
+    store.set('ha-shown', 0);
+    save(); render(); pop('記録を祓った');
   } else if (act === 'apioff') {
     if (confirm('スプレッドシート連携をやめますか？')) { Sync.conf = null; store.set('ha-api', null); Sync.status = ''; render(); }
   }
@@ -1459,7 +1466,7 @@ document.addEventListener('click', e => {
   }
   saveTasks(); render();
   const after = Calc.stats(S.log, S.settings, t, S);
-  if (after.xp > before.xp) pop(after.lv > before.lv ? `レベルアップ Lv.${after.lv}` : `+${after.xp - before.xp} XP`);
+  if (after.xp > before.xp) pop(after.lv > before.lv ? `覚醒 Lv.${after.lv}` : `+${after.xp - before.xp} XP`);
 });
 document.addEventListener('submit', e => {
   const f = e.target; e.preventDefault();
@@ -1512,7 +1519,7 @@ function addStudy(sid, min, at) {
   S.study.push({ id: uid(), s: sid, min, at });
   S.lastSubj = sid; save(); render();
   const after = Calc.stats(S.log, S.settings, t, S);
-  pop(after.lv > before.lv ? `レベルアップ Lv.${after.lv}` : `${subjOf(sid).name} +${fmtMin(min)}${after.xp > before.xp ? ` ・ +${after.xp - before.xp} XP` : ''}`);
+  pop(after.lv > before.lv ? `覚醒 Lv.${after.lv}` : `${subjOf(sid).name} +${fmtMin(min)}${after.xp > before.xp ? ` ・ +${after.xp - before.xp} XP` : ''}`);
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-s]'); if (!b) return;
