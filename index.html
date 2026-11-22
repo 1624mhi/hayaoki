@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="早起き">
-<meta name="theme-color" content="#f4efe3">
+<meta name="theme-color" content="#0c0a08">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Yuji+Syuku&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>早起き</title>
 <style>
-  /* 白い和紙に墨と朱。古文書・お札の気配 */
+  /* 墨と朱。夜明け前の闇に、古い紙と金の縁 */
   :root {
-    --bg: #f4efe3; --card: #fffdf7; --ink: #1b1611; --quiet: #7a6c58; --line: #d9ccb2; --chip: #f1e9d8;
-    --accent: #b8261a; --accent-soft: #f8e3dc; --gold: #9a6f12; --good: #2f7a52; --good-soft: #e1efe4;
-    --warn: #b26a12; --warn-soft: #f7ead6; --bad: #b8261a; --bad-soft: #f6dcd6; --paper: #fffdf7; --sumi: #1b1611;
+    --bg: #0c0a08; --card: #15110d; --ink: #ebe0c8; --quiet: #9a8a70; --line: #3a2e20; --chip: #221b14;
+    --accent: #c8392b; --accent-soft: #3a1611; --gold: #c9a24a; --good: #5f9e7a; --good-soft: #16271d;
+    --warn: #d6964a; --warn-soft: #33230f; --bad: #e0584a; --bad-soft: #3a1512; --paper: #e8ddc3; --sumi: #17130f;
     --brush: "Yuji Syuku", "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
-    color-scheme: light;
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink);
     font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-    background: radial-gradient(120% 50% at 50% 0%, #fffaf0 0%, #f4efe3 60%) fixed, #f4efe3; }
+    background: radial-gradient(120% 60% at 50% 0%, #2a1712 0%, #120d0a 45%, #0a0807 100%) fixed, #0a0807; }
   main { max-width: 520px; margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 16px 48px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; margin-bottom: 10px; }
   .label { font-size: 13px; color: var(--quiet); }
@@ -87,6 +87,7 @@
   .btn { border: 0; border-radius: 12px; padding: 12px; font: inherit; font-weight: 600; background: var(--chip); color: var(--ink); width: 100%; margin-top: 10px; }
   .btn.main { background: var(--accent); color: #fff; }
   .note { font-size: 13px; color: var(--quiet); margin: 8px 0 0; }
+  .btn.danger { color: var(--bad); box-shadow: inset 0 0 0 1px rgba(224,88,74,.4); }
   .linkbtn { border: 0; background: none; color: var(--bad); font: inherit; font-size: 13px; padding: 0; margin-top: 12px; }
   .pop { position: fixed; left: 50%; top: 40%; transform: translate(-50%, -50%); font-size: 30px; font-weight: 800; color: var(--accent);
     pointer-events: none; animation: pop 1.6s ease-out forwards; text-shadow: 0 2px 0 var(--card); }
@@ -347,88 +348,6 @@
   .sw button.on { box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--ink); }
   .due.ok { background: var(--good-soft); color: #8fd0aa; }
   .item > .label { white-space: nowrap; }
-  /* ---- ライトモードの厨二（上の闇色を白い紙に置きかえる） ---- */
-  .card { border-radius: 3px; border: 1px solid var(--line); background: var(--card);
-    box-shadow: inset 0 0 0 3px var(--card), inset 0 0 0 4px rgba(184,38,26,.18), 0 4px 14px rgba(60,40,20,.08); }
-  h2 { color: var(--accent); }
-  h2::before { content: '■'; font-size: .6em; margin-right: 6px; vertical-align: .25em; color: var(--accent); }
-  .pet .face { color: var(--ink); background: radial-gradient(circle at 40% 35%, #fffdf7, #efe4cc); box-shadow: 0 0 0 1px var(--gold), 0 0 0 4px var(--card), 0 0 0 5px rgba(154,111,18,.35); }
-  .pet .face.plant { color: var(--good); background: radial-gradient(circle at 40% 35%, #fbfff9, #dcebdc); box-shadow: 0 0 0 1px var(--good); }
-  .pet .face.wilt { color: var(--bad); background: radial-gradient(circle at 40% 35%, #fff6f3, #f1d6cf); box-shadow: 0 0 0 1px var(--bad); }
-  .bar { background: #e9dfca; }
-  .bar > div { background: linear-gradient(90deg, #6e130b, var(--accent), #e0603a); box-shadow: none; }
-  .bar.green > div { background: linear-gradient(90deg, #1d4f35, var(--good), #6fb38c); box-shadow: none; }
-  .stat { background: var(--chip); box-shadow: inset 0 0 0 1px var(--line); }
-  .streak { background: var(--chip); box-shadow: inset 0 0 0 1px var(--line); }
-  .streak.on { background: linear-gradient(90deg, #f8dcd2, #fbf1e4); box-shadow: inset 0 0 0 1px rgba(184,38,26,.45); }
-  .streak.on .flame { color: var(--accent); text-shadow: 0 0 10px rgba(232,90,50,.45); }
-  .streak .flame { color: var(--accent); }
-  .big { color: #fff8ee; background: linear-gradient(180deg, #c73224, #8a1a10);
-    box-shadow: 0 0 0 1px #8a1a10, inset 0 0 0 3px rgba(255,240,220,.25), 0 5px 0 #5a0f08, 0 8px 22px rgba(184,38,26,.35);
-    text-shadow: 0 1px 0 rgba(0,0,0,.25); animation: breatheL 2.4s ease-in-out infinite; }
-  .big:active { box-shadow: 0 0 0 1px #8a1a10, 0 1px 0 #5a0f08; }
-  @keyframes breatheL { 50% { box-shadow: 0 0 0 1px #8a1a10, inset 0 0 0 3px rgba(255,240,220,.35), 0 5px 0 #5a0f08, 0 10px 34px rgba(220,60,30,.55); } }
-  .big.second { background: linear-gradient(180deg, #2f7a52, #164a30); box-shadow: 0 0 0 1px #164a30, inset 0 0 0 3px rgba(230,255,240,.2), 0 5px 0 #0b2b1b, 0 8px 22px rgba(47,122,82,.3); }
-  .big.second:active { box-shadow: 0 0 0 1px #164a30, 0 1px 0 #0b2b1b; }
-  .big.study { background: linear-gradient(180deg, #7b45a3, #4a2468); box-shadow: 0 0 0 1px #4a2468, 0 5px 0 #2a1240, 0 8px 22px rgba(123,69,163,.3); }
-  .result { background: var(--chip); }
-  .result.perfect { background: var(--good-soft); } .result.half { background: var(--warn-soft); } .result.over { background: var(--bad-soft); }
-  .weeks .c.perfect { background: #f3e2b0; color: #5a3f05; box-shadow: inset 0 0 0 1px var(--gold); }
-  .weeks .c.half { background: #f2dcc0; color: #7a4508; } .weeks .c.over { background: var(--accent); color: #fff; }
-  .btn.main { background: linear-gradient(180deg, #c73224, #8a1a10); color: #fff; box-shadow: none; }
-  .btn.danger { color: var(--bad); box-shadow: inset 0 0 0 1px rgba(184,38,26,.4); }
-  .tick { border-color: #b9a988; background: var(--card); }
-  .tick.on { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px rgba(184,38,26,.35); }
-  .days button.on { background: var(--accent); color: #fff; }
-  .sugs { background: #fbf3e2; box-shadow: inset 0 0 0 1px #e2d0a8; }
-  .sugs .item { border-top-color: var(--line); }
-  .tabs { background: rgba(255,253,247,.94); border-top: 1px solid var(--line); }
-  .tabs button.on { background: var(--accent-soft); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
-  .tabs button.on b { color: var(--accent); text-shadow: none; }
-  .pop { color: var(--accent); text-shadow: 0 0 2px #fff, 0 0 12px rgba(255,255,255,.9), 0 0 24px rgba(232,90,50,.5); }
-  .graves { border-top-color: var(--line); }
-  /* 魔物の絵: 白い紙に墨。縁は印 */
-  .art { background: radial-gradient(circle at 50% 45%, #fffdf6, #f3ead6 80%, #e6d8b8);
-    box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 1px #c9b48a, 0 4px 12px rgba(60,40,20,.15); }
-  .art.r1 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px var(--good); }
-  .art.r2 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px #3f68b0, 0 0 12px rgba(63,104,176,.3); }
-  .art.r3 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px #7b45a3, 0 0 16px rgba(123,69,163,.35); }
-  .art.r4 { box-shadow: inset 0 0 16px rgba(150,110,50,.25), 0 0 0 2px var(--gold), 0 0 22px rgba(201,150,40,.5); }
-  .art.st3::after { background: radial-gradient(circle, rgba(230,70,40,.35), transparent 70%); }
-  .art.egg { background: radial-gradient(circle at 40% 35%, #fffdf6, #eadcbc); box-shadow: 0 0 0 1px var(--gold), 0 0 22px rgba(201,150,40,.35); }
-  .art.egg .glyph { color: var(--accent); }
-  .art.grave { background: radial-gradient(circle at 40% 35%, #f4f1ea, #d9d3c6); box-shadow: 0 0 0 1px #a59c8c; }
-  .art.grave .glyph { color: #6f675a; }
-  .dexbtn { color: var(--accent); background: linear-gradient(90deg, #fbf3e2, #f6e6c6, #fbf3e2); box-shadow: inset 0 0 0 1px #d9c08a; }
-  .dexbtn b { color: var(--ink); }
-  .ov { background: radial-gradient(120% 70% at 50% 0%, #fffaf0, #f1ead9 60%) fixed; }
-  .ovhead h1 { color: var(--accent); text-shadow: none; }
-  .x { border: 1px solid var(--line); background: var(--card); }
-  .cell { background: var(--card); border: 1px solid var(--line); }
-  .cell.unk { background: repeating-linear-gradient(45deg, #f1e9d8 0 6px, #ebe1cc 6px 12px); }
-  .cell.unk .q { color: #cdbd9c; }
-  .cell.r3 { border-color: #b893d6; } .cell.r4 { border-color: #d0a849; box-shadow: 0 0 10px rgba(201,150,40,.25); }
-  .dname { text-shadow: none; }
-  .tag { border-color: var(--line); }
-  .tag.r1 { color: var(--good); border-color: #a9d0b8; } .tag.r2 { color: #3f68b0; border-color: #b4c6e8; }
-  .tag.r3 { color: #7b45a3; border-color: #d2bce6; } .tag.r4 { color: var(--gold); border-color: #e2c98d; }
-  .desc { background: #fbf6ea; }
-  .btn.on { background: var(--good-soft); }
-  .reveal .ring { background: repeating-conic-gradient(from 0deg, rgba(184,38,26,.16) 0 4deg, transparent 4deg 15deg); }
-  .reveal.r4 .ring { background: repeating-conic-gradient(from 0deg, rgba(201,150,40,.3) 0 4deg, transparent 4deg 12deg); }
-  .reveal.r3 .ring { background: repeating-conic-gradient(from 0deg, rgba(123,69,163,.22) 0 4deg, transparent 4deg 12deg); }
-  .reveal .rhead { color: var(--accent); text-shadow: none; } .reveal.r4 .rhead { color: var(--gold); }
-  @keyframes ink { from { filter: blur(18px) brightness(1.6); transform: scale(.6) rotate(-6deg); opacity: 0; } }
-  .bar.violet > div { box-shadow: none; } .bar.pace.good > div { box-shadow: none; }
-  .bar.pace i { background: var(--ink); opacity: .5; }
-  .pill { border-color: var(--line); } .pill.good { color: var(--good); border-color: #a9d0b8; }
-  .pill.warn { border-color: #e6c49a; } .pill.bad { border-color: #e6b0a8; }
-  .grad { background: #f3ecfa; box-shadow: inset 0 0 0 1px #c9aee3; }
-  .clock.on { text-shadow: 0 0 12px rgba(123,69,163,.3); }
-  .genre .sb, .subj .sb { background: #e9dfca; }
-  .due.ok { color: var(--good); }
-  .recap { background: rgba(40,25,10,.35); }
-  .item { border-top-color: var(--line); }
 </style>
 </head>
 <body>
@@ -1038,8 +957,8 @@ function weeksCard(t) {
       : `<div class="${cls}">${Number(d.slice(8))}</div>`;
   }
   return `<section class="card"><h2>戦歴</h2><div class="weeks">${cells}</div>
-    <div class="legend"><span><i style="background:#f3e2b0;box-shadow:inset 0 0 0 1px var(--gold)"></i>完全覚醒</span><span><i style="background:#f2dcc0"></i>半覚醒</span>
-    <span><i style="background:#b8261a"></i>寝坊</span><span><i style="background:var(--chip)"></i>目標がある日</span></div>
+    <div class="legend"><span><i style="background:var(--gold)"></i>完全覚醒</span><span><i style="background:#4a2f12"></i>半覚醒</span>
+    <span><i style="background:#a8281c"></i>寝坊</span><span><i style="background:var(--chip)"></i>目標がある日</span></div>
     <p class="note">起きてたのに押し忘れた日は、寝坊・半覚醒の日をタップすると成功にできる（相棒ももどる）。</p></section>`;
 }
 
@@ -1221,16 +1140,16 @@ function studyChart(z, t) {
   const W = 700, top = 26, bot = 196, left = 12, colW = (W - left * 2) / 7, bw = Math.min(54, colW * .55), y = v => bot - v / ymax * (bot - top);
   const ti = (t.getDay() + 6) % 7;
   const ids = [...ss.subjects.map(x => x.id), ...Object.keys(by).filter(k => !ss.subjects.some(x => x.id === k))];
-  let svg = `<svg viewBox="0 0 ${W} 230" role="img" aria-label="曜日ごとの勉強時間"><line x1="${left}" x2="${W - left}" y1="${bot}" y2="${bot}" stroke="#d9ccb2" stroke-width="1.5"/>`;
+  let svg = `<svg viewBox="0 0 ${W} 230" role="img" aria-label="曜日ごとの勉強時間"><line x1="${left}" x2="${W - left}" y1="${bot}" y2="${bot}" stroke="#3a2e20" stroke-width="1.5"/>`;
   days.forEach((o, i) => {
     const cx = left + colW * i + colW / 2; let acc = 0;
     ids.forEach(id => { const v = o[id]; if (!v) return; const y0 = y(acc), y1 = y(acc + v); acc += v;
       svg += `<rect x="${cx - bw / 2}" y="${y1}" width="${bw}" height="${Math.max(1, y0 - y1)}" fill="${subjOf(id).color}"><title>${esc(subjOf(id).name)} ${fmtMin(v)}</title></rect>`; });
-    if (tot[i]) svg += `<text x="${cx}" y="${y(tot[i]) - 7}" text-anchor="middle" font-size="15" fill="#1b1611">${fmtMin(tot[i])}</text>`;
-    svg += `<text x="${cx}" y="${bot + 24}" text-anchor="middle" font-size="16" fill="${i === ti ? '#b8261a' : '#7a6c58'}">${'月火水木金土日'[i]}</text>`;
+    if (tot[i]) svg += `<text x="${cx}" y="${y(tot[i]) - 7}" text-anchor="middle" font-size="15" fill="#ebe0c8">${fmtMin(tot[i])}</text>`;
+    svg += `<text x="${cx}" y="${bot + 24}" text-anchor="middle" font-size="16" fill="${i === ti ? '#ff7a4a' : '#9a8a70'}">${'月火水木金土日'[i]}</text>`;
   });
-  svg += `<line x1="${left}" x2="${W - left}" y1="${y(target)}" y2="${y(target)}" stroke="#7a6c58" stroke-dasharray="5 5" stroke-width="1.5"/>
-    <text x="${W - left}" y="${y(target) - 6}" text-anchor="end" font-size="13" fill="#7a6c58">1日の目安 ${fmtMin(target)}</text></svg>`;
+  svg += `<line x1="${left}" x2="${W - left}" y1="${y(target)}" y2="${y(target)}" stroke="#9a8a70" stroke-dasharray="5 5" stroke-width="1.5"/>
+    <text x="${W - left}" y="${y(target) - 6}" text-anchor="end" font-size="13" fill="#9a8a70">1日の目安 ${fmtMin(target)}</text></svg>`;
   const sum = list.reduce((a, e) => a + e.min, 0);
   const rows = Object.keys(by).sort((a, b) => by[b] - by[a]).map(id => { const x = subjOf(id), v = by[id];
     return `<div class="subj"><span class="chip"><i style="background:${x.color}"></i>${esc(x.name)}</span><span class="sb"><i style="width:${v / sum * 100}%;background:${x.color}"></i></span><span>${fmtMin(v)}</span></div>`; }).join('');
