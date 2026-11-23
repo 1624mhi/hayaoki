@@ -901,7 +901,7 @@ function todayCard(t) {
   head += '</div>';
   let body = '';
   if (d < S.settings.start) {
-    body = `<div class="msg">まだ始まっていない</div><div class="hint">${Calc.parse(S.settings.start).getMonth() + 1}月${Calc.parse(S.settings.start).getDate()}日の朝から数え始める。今日は早めに寝よう</div>`;
+    body = `<div class="msg">まだ始まっていない</div><div class="hint">${Calc.parse(S.settings.start).getMonth() + 1}月${Calc.parse(S.settings.start).getDate()}日の朝から数え始める。今日は早めに寝よう</div><button class="linkbtn" data-act="startnow">今日の朝から数える</button>`;
   } else if (j.phase === 'off') {
     const nx = nextWake(d);
     body = `<div class="msg">今日は目標なし 🌙</div><div class="hint">${nx ? `次は ${nx}。前の日は早めに寝よう` : '設定で起きる時間を入れてね'}</div>`;
@@ -980,7 +980,7 @@ function settingsCard() {
     <button class="btn main" data-act="api">${Sync.conf ? 'つなぎ直す' : 'つなぐ'}</button>
     ${Sync.conf ? '<button class="linkbtn" data-act="apioff" style="color:var(--quiet)">連携をやめる（記録はこの端末に残ります）</button>' : ''}
     <h2 style="margin-top:18px">記録をリセット</h2>
-    <p class="note">早起きの記録・経験値・霊獣と図鑑・勉強の記録・日課のチェックの記録を消して、明日の朝から0で始めます。日課・TODO・起きる時間・教科はそのまま残ります。</p>
+    <p class="note">早起きの記録・経験値・霊獣と図鑑・勉強の記録・日課のチェックの記録を消して、今日の朝から0で始めます（今日押した分は残ります）。日課・TODO・起きる時間・教科はそのまま残ります。</p>
     <button class="btn danger" data-act="wipe">記録をぜんぶ消す</button>
   </details></section>`;
 }
@@ -1310,14 +1310,22 @@ document.addEventListener('click', e => {
     S.settings.wakeFix = (S.settings.wakeFix || []).filter(x => x !== dd);
     saveSettings(); render();
   } else if (act === 'wipe') {
-    if (!confirm('早起きの記録・経験値・霊獣と図鑑・勉強の記録・日課のチェックの記録をぜんぶ消して、明日から0で始めますか？\n（日課・TODO・設定は残ります。元にはもどせません）')) return;
-    const tm = Calc.addDays(d, 1), ss = S.settings;
+    if (!confirm('早起きの記録・経験値・霊獣と図鑑・勉強の記録・日課のチェックの記録をぜんぶ消して、今日の朝から0で始めますか？\n（今日の分と、日課・TODO・設定は残ります。元にはもどせません）')) return;
+    const tm = d, ss = S.settings;   // 今日の朝から数える。今日押した分は残す
     ss.start = tm; ss.seed = tm + '|' + uid();
     ss.picks = []; ss.breeds = []; ss.wakeFix = [];
-    S.log = {}; S.study = []; S.hlog = {};
+    S.log = S.log[d] ? { [d]: S.log[d] } : {};
+    S.hlog = S.hlog[d] ? { [d]: S.hlog[d] } : {};
+    S.study = S.study.filter(x => Calc.ymd(new Date(x.at)) === d);
     if (ss.study) { ss.study.pets = []; ss.study.timer = null; delete ss.study.nextEgg; ss.study.from = Calc.week(Calc.parse(tm)); ss.study.pets.push(newPet(ss.study, 'もち', +Calc.parse(tm))); }
     store.set('ha-shown', 0);
     save(); render(); pop('記録を祓った');
+  } else if (act === 'startnow') {
+    // 「明日から」にしていたのを、今日の朝からに早める
+    const ss = S.settings;
+    ss.start = d;
+    if (ss.study) ss.study.from = Calc.week(Calc.parse(d));
+    saveSettings(); render(); pop('今日の朝から数える');
   } else if (act === 'apioff') {
     if (confirm('スプレッドシート連携をやめますか？')) { Sync.conf = null; store.set('ha-api', null); Sync.status = ''; render(); }
   }
